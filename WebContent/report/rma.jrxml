@@ -1,0 +1,875 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport language="java" xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rma" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="9a1ea0c8-2d07-4ee6-b3a0-0f1a5174e4c2">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Arial_Normal" isDefault="true" fontName="Arial" fontSize="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<style name="Arial_Bold" fontName="Arial" fontSize="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<style name="Arial_Italic" fontName="Arial" fontSize="12" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica-Oblique" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+	<parameter name="company_name" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="company_address" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="company_tel" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="company_fax" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="logo_url" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="image_url" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="subtotal" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="tax" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="total" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="deposite" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="balance" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="vendor" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="company_name_pic_url" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="invoice" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="sale_number" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="remark" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="receive_barcode" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="buyer_name" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="buyer_postCode" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="buyer_city" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="buyer_mobile" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="buyer_address" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="refund" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="buyer_state" class="java.lang.String" isForPrompting="false"/>
+	<queryString>
+		<![CDATA[select * from TSaLEpRODUCT]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="sale_id" class="java.lang.Integer"/>
+	<field name="product_id" class="java.lang.Integer"/>
+	<field name="product_code" class="java.lang.String"/>
+	<field name="product_name" class="java.lang.String"/>
+	<field name="product_price" class="java.lang.Double"/>
+	<field name="agio_price" class="java.lang.Double"/>
+	<field name="product_num" class="java.lang.Integer"/>
+	<field name="sale_time" class="java.sql.Timestamp"/>
+	<field name="agio" class="java.lang.Double"/>
+	<field name="rma_id" class="java.lang.Integer"/>
+	<field name="rma_time" class="java.sql.Timestamp"/>
+	<field name="rma_code" class="java.lang.String"/>
+	<field name="if_rma" class="java.lang.String"/>
+	<field name="if_back_order" class="java.lang.Integer"/>
+	<field name="rma_num" class="java.lang.Integer"/>
+	<field name="productid" class="java.lang.String"/>
+	<variable name="SUM_product_price_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{product_price}]]></variableExpression>
+	</variable>
+	<variable name="AMOUNT" class="java.lang.Double" resetType="Column" incrementType="Column">
+		<variableExpression><![CDATA[new Double($F{product_num}.intValue()*$F{agio_price}.doubleValue())]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Prevent"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="200" splitType="Stretch">
+			<rectangle>
+				<reportElement key="rectangle-1" style="Arial_Normal" x="10" y="173" width="570" height="27" backcolor="#CCCCCC" uuid="af5a8766-798c-4161-bc16-fcbb19ff8edc"/>
+			</rectangle>
+			<line>
+				<reportElement key="line-9" style="Arial_Normal" x="43" y="173" width="1" height="27" uuid="0e0168ae-93b2-49e4-b29b-f920ee348a60"/>
+			</line>
+			<line>
+				<reportElement key="line-10" style="Arial_Normal" x="277" y="173" width="1" height="27" uuid="78cdd0e0-2a41-4409-bdc0-2e0fff74e5c7"/>
+			</line>
+			<line>
+				<reportElement key="line-11" style="Arial_Normal" x="339" y="173" width="1" height="27" uuid="d9d69ab6-81d9-48a5-b3b3-c679fe13407a"/>
+			</line>
+			<line>
+				<reportElement key="line-12" style="Arial_Normal" x="426" y="173" width="1" height="27" uuid="bb9760be-149e-40f0-ba1f-da43844e2aec"/>
+			</line>
+			<line>
+				<reportElement key="line-26" style="Arial_Normal" x="124" y="173" width="1" height="27" uuid="ac09d208-f825-4312-b1a0-c4b367586e69"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-13" style="Arial_Normal" x="127" y="174" width="140" height="24" uuid="f5b688cd-369e-49b2-8b07-9dd03a6ef409"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="黑体" size="10" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Product Name
+产品名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-14" style="Arial_Normal" x="343" y="174" width="80" height="24" uuid="186101af-da2e-4392-9080-49f1c022bda8"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="黑体" size="10" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[UNIT PRICE
+单价]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-15" style="Arial_Normal" x="282" y="174" width="53" height="24" uuid="5ebe148d-fd68-47a6-be9d-00199bad2e82"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="黑体" size="10" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[QTY.
+数量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-16" style="Arial_Normal" x="510" y="174" width="70" height="24" uuid="17d3af45-4617-4d60-8e0b-fa224ad5ab96"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="黑体" size="10" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[AMOUNT
+总价]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-25" style="Arial_Normal" x="46" y="174" width="75" height="24" uuid="1e2a2d1c-8c2e-4dea-b3e5-b15df4e6a35a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="黑体" size="10" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Item Id
+编号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-34" style="Arial_Normal" x="10" y="174" width="40" height="24" uuid="43773373-4671-4953-8ab8-a975769fe935"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="黑体" size="10" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Line
+行号]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement key="rectangle-6" style="Arial_Normal" x="10" y="95" width="260" height="70" uuid="b8757c83-1f51-4f43-a20d-e69b04e74a71"/>
+			</rectangle>
+			<rectangle>
+				<reportElement key="rectangle-7" style="Arial_Normal" x="318" y="95" width="256" height="70" uuid="bc14d923-9d2b-4384-bd3c-ef8c4f72b285"/>
+			</rectangle>
+			<staticText>
+				<reportElement key="staticText-39" style="Arial_Normal" x="320" y="5" width="191" height="23" uuid="91716f2c-5f11-47fd-b475-ff8cc3273bc3"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[RMA]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="false">
+				<reportElement key="textField-13" x="16" y="6" width="295" height="35" uuid="d51aeacc-8efe-4a09-8723-904ceb4df097"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font size="14" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{company_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-14" x="16" y="41" width="269" height="19" uuid="5258ab74-7233-459d-a84a-ea3b96e2606a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{company_address}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-15" x="16" y="61" width="253" height="18" uuid="046699f5-b849-4054-be22-804aac76b939"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA["Tel:"+$P{company_tel}+"  Fax:"+$P{company_fax}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-31" style="Arial_Normal" x="2" y="84" width="586" height="1" uuid="c401a160-e3f9-429a-bb9c-9d7551f221f1"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-40" style="Arial_Normal" x="320" y="61" width="50" height="14" uuid="8798919c-0c29-489e-a1a0-0bbfd4e6aaaf"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[PAGE:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-16" x="387" y="61" width="35" height="14" uuid="55d6fa89-6cd5-4b3a-8ae7-8a2b8ada0cff"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER} + " OF "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="false">
+				<reportElement key="textField-17" x="422" y="61" width="54" height="18" uuid="42a0256d-9286-44cf-b08f-652c9318dee2"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[""+$V{PAGE_NUMBER}+""]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-41" style="Arial_Normal" x="320" y="36" width="54" height="14" uuid="b375302b-fa76-4842-84ae-9326684ecc2a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[INVOICE:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField-18" x="387" y="34" width="100" height="18" uuid="916e4d9c-f22f-4cb3-8326-24ce37da85fe"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{invoice}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-42" style="Arial_Normal" x="14" y="96" width="50" height="14" uuid="0d0cfc2c-dec7-4f9f-91c9-7af920fbc63b"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Bill To:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-43" style="Arial_Normal" x="320" y="95" width="50" height="14" uuid="d29b14ec-6889-4509-851d-c7834543d793"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left"/>
+				<text><![CDATA[Ship To:]]></text>
+			</staticText>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement key="textField-20" x="325" y="111" width="249" height="18" isRemoveLineWhenBlank="true" uuid="56c0b093-83da-429c-a13f-8c17100739be"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{buyer_address}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement key="textField-23" x="325" y="145" width="170" height="18" isRemoveLineWhenBlank="true" uuid="acccd178-666b-41ea-9a3f-b18487c737b7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{buyer_mobile}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-32" style="Arial_Normal" x="510" y="173" width="1" height="27" uuid="58845d8b-6ff5-4b5c-baa2-bbcdb29f86ff"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-44" style="Arial_Normal" x="429" y="174" width="80" height="24" uuid="9bdd8310-8b34-4bc0-9dd0-c18bc2e7f889"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="黑体" size="10" isBold="true" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[RMA AMOUNT
+退款总价]]></text>
+			</staticText>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement key="textField-25" x="325" y="130" width="96" height="15" isRemoveLineWhenBlank="true" uuid="1ec626a7-2c17-4032-aeea-fee766691240"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{buyer_city}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement key="textField-26" x="422" y="130" width="65" height="15" isRemoveLineWhenBlank="true" uuid="e3e7a939-6dcf-4041-99a0-e84d1f54962a"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{buyer_state}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement key="textField-27" x="486" y="130" width="57" height="15" isRemoveLineWhenBlank="true" uuid="f3b9e995-0f06-4626-8951-f3590beb5dae"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{buyer_postCode}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement key="textField-28" x="23" y="111" width="170" height="18" isRemoveLineWhenBlank="true" uuid="dcb2640d-cbcb-4e98-8631-ad1136107a09"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textFieldExpression><![CDATA[$P{buyer_mobile}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-29" x="23" y="129" width="248" height="16" uuid="d25168de-e107-4da0-8bc0-c49f23a29552"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left">
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{buyer_name}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" isBlankWhenNull="true">
+				<reportElement key="textField-30" x="23" y="145" width="249" height="18" isRemoveLineWhenBlank="true" uuid="b9f26648-c794-40e0-9f74-1b339300e4eb"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{buyer_address}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" stretchType="RelativeToBandHeight" x="127" y="1" width="140" height="27" uuid="254e2681-b41c-4fd9-8a26-9c37eae46870"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="343" y="1" width="80" height="27" uuid="f7084776-2483-4a79-9824-da714a1a04e0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{agio_price}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField" x="282" y="1" width="55" height="27" uuid="b6afdc62-adc3-4fe0-841a-31ae440330ca"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{product_num}.toString()+"  RMA-"+$F{rma_num}.toString()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-3" style="Arial_Normal" positionType="Float" mode="Opaque" x="10" y="27" width="570" height="1" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" uuid="5c2a06ce-384c-40ef-9e2c-dab28b911e0c"/>
+			</line>
+			<line>
+				<reportElement key="line-4" style="Arial_Normal" x="10" y="-27" width="1" height="54" uuid="8c93d786-a243-49e6-9b2f-69d7de655bbc"/>
+			</line>
+			<line>
+				<reportElement key="line-5" style="Arial_Normal" x="579" y="-27" width="1" height="54" uuid="f241d6c7-dadf-4556-b751-4772533b9535"/>
+			</line>
+			<line>
+				<reportElement key="line-6" style="Arial_Normal" x="339" y="-27" width="1" height="54" uuid="59d7280d-7125-4015-b36d-a03d1efceb98"/>
+			</line>
+			<line>
+				<reportElement key="line-7" style="Arial_Normal" x="277" y="-27" width="1" height="54" uuid="57d9479b-50fb-441e-9474-695800f9a1cf"/>
+			</line>
+			<line>
+				<reportElement key="line-8" style="Arial_Normal" x="43" y="-27" width="1" height="54" uuid="b9df91a9-6fe9-47c9-a06c-8e6b5638a72c"/>
+			</line>
+			<line>
+				<reportElement key="line-13" style="Arial_Normal" x="426" y="-27" width="1" height="54" uuid="07fa505e-d1a8-4c31-8865-42d258c669fb"/>
+			</line>
+			<textField pattern="##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="510" y="1" width="68" height="27" uuid="6596595a-e475-4feb-b0fa-5b46874d0df7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{AMOUNT}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="10" y="1" width="32" height="27" uuid="b719175c-1232-463c-b671-66022115a378"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-25" style="Arial_Normal" x="124" y="-27" width="1" height="54" uuid="cc33f038-3d18-44f3-ac0c-de780a123f79"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement key="textField-6" x="46" y="1" width="75" height="27" uuid="20c84da1-e2fb-4287-8391-f84a3899aa46"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{productid}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-33" style="Arial_Normal" x="510" y="-27" width="1" height="54" uuid="b0d9117b-6d10-4d32-bdec-e9b4d6ef14af"/>
+			</line>
+			<textField pattern="##0.00" isBlankWhenNull="false">
+				<reportElement key="textField-24" x="430" y="1" width="80" height="27" uuid="f795553b-0e0b-42fb-8a24-9d7face247b7"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.lang.Double(-($F{product_price}.doubleValue()) *($F{rma_num}.intValue()))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="30" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="300" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText-2" style="Arial_Normal" x="370" y="54" width="94" height="14" uuid="fb56f3b3-23fc-4ea7-ac75-595500398e6e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[Sub Total/总计:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-8" style="Arial_Normal" x="380" y="74" width="84" height="14" uuid="0265690c-2218-4af3-8999-4bd4e3edb4ed"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[Tax/税:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-9" style="Arial_Normal" x="380" y="94" width="84" height="14" uuid="0716a621-b833-4242-b9fe-71175c2f30d3"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[Total/总价:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-10" style="Arial_Normal" x="380" y="114" width="84" height="14" uuid="3501c1ce-e63c-457b-86ac-fd9d48220846"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[Deposite/定金:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-11" style="Arial_Normal" x="380" y="134" width="84" height="14" uuid="ecc3c2bb-60ae-4f7b-b0ec-292788e8cab9"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[Balance/差额:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-17" style="Arial_Normal" x="17" y="216" width="282" height="16" uuid="fa736f9a-453a-483b-bc71-ae073d7060f3"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<text><![CDATA[THANK YOU  FOR SHOPPING]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement key="rectangle-2" style="Arial_Normal" x="466" y="31" width="89" height="120" uuid="e9dc4ae3-2310-4d47-b9a2-81ac73e903b6"/>
+			</rectangle>
+			<line>
+				<reportElement key="line-14" style="Arial_Normal" x="466" y="51" width="89" height="1" uuid="9df211b3-7328-4651-9568-8f1cfdd3f7a8"/>
+			</line>
+			<line>
+				<reportElement key="line-15" style="Arial_Normal" x="466" y="71" width="89" height="1" uuid="466d466d-66db-44cb-a8d8-bd9134e9dd19"/>
+			</line>
+			<line>
+				<reportElement key="line-16" style="Arial_Normal" x="466" y="91" width="89" height="1" uuid="244932b2-371f-4db5-8749-3f35d799ac9d"/>
+			</line>
+			<line>
+				<reportElement key="line-17" style="Arial_Normal" x="466" y="131" width="89" height="1" uuid="5f93e199-463f-49c9-873c-108b4e4436bb"/>
+			</line>
+			<textField pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="467" y="51" width="80" height="20" uuid="6451178b-63a0-4a5f-9955-190ffa4fca4e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($P{subtotal})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="467" y="71" width="80" height="20" uuid="56e65b0f-f78a-4fbd-aacc-28609be6c451"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($P{tax})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="467" y="91" width="80" height="20" uuid="b66a77e3-fad1-438d-82d8-576d13ad38f0"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($P{total})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="false">
+				<reportElement key="textField" x="467" y="111" width="80" height="20" uuid="5c47529b-8b25-4eb3-9521-fb5c0d7c194c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($P{deposite})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement key="textField" x="467" y="131" width="80" height="20" uuid="8d611341-2fc0-4bfb-8f3e-dcb655f7e5f8"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($P{balance})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-18" style="Arial_Normal" x="17" y="122" width="268" height="29" uuid="4d72e385-a7fd-4e15-a6ac-7a6e29ae140c"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Returns subject to inspection and a 20% restocking charge.For any credit accounts,net 30 days.A finance charge of 1.5% per month will be added to all past due accounts.
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-19" style="Arial_Normal" x="17" y="183" width="340" height="11" uuid="4242d4c2-6c81-466f-8f18-3a5635b69389"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[All claims and returned goods Must be accompanied by this bill.]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement key="rectangle-5" style="Arial_Normal" x="18" y="56" width="344" height="47" uuid="a4defd4f-1a5a-484a-ba6b-94f1e1bdbdd1"/>
+			</rectangle>
+			<line>
+				<reportElement key="line-21" style="Arial_Normal" x="18" y="32" width="1" height="24" uuid="13680ef6-e964-4854-bc06-c83022f43840"/>
+			</line>
+			<line>
+				<reportElement key="line-22" style="Arial_Normal" x="18" y="32" width="89" height="1" uuid="c8c292cb-92fb-45c8-98a1-638b6b03fa07"/>
+			</line>
+			<line>
+				<reportElement key="line-23" style="Arial_Normal" x="106" y="33" width="23" height="24" uuid="80eac433-ff98-4475-92f6-523c611538e5"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-21" style="Arial_Normal" x="23" y="37" width="84" height="14" uuid="57587fb1-ce5d-461a-98e6-47d0fe7205e2"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="黑体" isBold="false" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[REMARK/备注]]></text>
+			</staticText>
+			<textField isBlankWhenNull="false">
+				<reportElement key="textField" x="21" y="59" width="339" height="42" uuid="678b043b-81bc-4f9c-8586-1fd5943c7e0d"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{remark}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText-26" style="Arial_Normal" x="337" y="169" width="60" height="21" uuid="43238285-967d-4412-ad4e-b8d91df69cfe"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[Name/姓名:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-27" style="Arial_Normal" x="306" y="201" width="91" height="21" uuid="528e1690-4635-4d95-8bf0-8b5ce91f45d1"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[Signature/签名:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-28" style="Arial_Normal" x="337" y="230" width="60" height="21" uuid="d1c00e21-72ec-4192-870c-0fbfae56a22e"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[Date/日期:]]></text>
+			</staticText>
+			<line>
+				<reportElement key="line-27" style="Arial_Normal" x="410" y="190" width="144" height="1" uuid="370b85d9-bfc7-4ad4-b2ee-ccd4012108f7"/>
+			</line>
+			<line>
+				<reportElement key="line-28" style="Arial_Normal" x="410" y="222" width="144" height="1" uuid="863765ba-f444-4fc8-a889-bfdf38c862ee"/>
+			</line>
+			<line>
+				<reportElement key="line-29" style="Arial_Normal" x="410" y="251" width="144" height="1" uuid="c575b173-295b-424c-8008-bdb1eac3a5bf"/>
+			</line>
+			<staticText>
+				<reportElement key="staticText-35" style="Arial_Normal" x="17" y="151" width="268" height="24" uuid="45797216-686e-4503-a266-e26c079c3c21"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="黑体" size="8" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[所有退货都要接受商品检验和20％的退货手续费。对于任何帐户客户,  30天退款。所有逾期账户每月要受取1.5％，的费用。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-36" style="Arial_Normal" x="17" y="194" width="340" height="11" uuid="1051a85d-c49f-4f90-bfd9-2ed553b07212"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="黑体" size="8" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[所有的索赔和退货必须附有本条例草案。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-37" style="Arial_Normal" x="17" y="232" width="282" height="16" uuid="6c218d14-9f44-4368-a3da-60e4aa78cd68"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[谢谢惠顾]]></text>
+			</staticText>
+			<staticText>
+				<reportElement key="staticText-38" style="Arial_Normal" x="380" y="34" width="84" height="14" uuid="d67d6513-e6c3-4791-865b-2acf9b6b87bf"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="黑体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+				</textElement>
+				<text><![CDATA[RMA/退款:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement key="textField-12" x="467" y="31" width="80" height="20" uuid="5f4767d1-d18b-42a3-91f1-799276e4bc09"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new Double($P{refund})]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line-30" style="Arial_Normal" x="466" y="111" width="89" height="1" uuid="e4e2729a-950f-4133-80d9-f4f466afb691"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
