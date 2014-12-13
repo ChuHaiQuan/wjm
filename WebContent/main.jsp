@@ -1,9 +1,10 @@
-<%@page import="com.poweronce.util.Constants"%>
+﻿<%@page import="com.poweronce.util.Constants"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <!DOCTYPE HTML>
 <html>
+
 <head>
 <meta charset="UTF-8" />
 <title>ERP AND POS SYSTEM</title>
